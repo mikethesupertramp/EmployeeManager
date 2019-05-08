@@ -1,4 +1,4 @@
-package me.mikethesupertramp.emploeemanager.dao;
+package me.mikethesupertramp.employeemanager.dao;
 
 import me.mikethesupertramp.toolkit.database.AdvDao;
 

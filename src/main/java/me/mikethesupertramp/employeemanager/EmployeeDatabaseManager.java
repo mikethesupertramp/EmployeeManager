@@ -1,6 +1,6 @@
-package me.mikethesupertramp.emploeemanager;
+package me.mikethesupertramp.employeemanager;
 
-import me.mikethesupertramp.emploeemanager.dao.EmployeeDao;
+import me.mikethesupertramp.employeemanager.dao.EmployeeDao;
 import me.mikethesupertramp.toolkit.database.DatabaseManager;
 import me.mikethesupertramp.toolkit.database.SQLConnectionProvider;
 import me.mikethesupertramp.toolkit.database.SQLExceptionListener;

@@ -1,4 +1,4 @@
-package me.mikethesupertramp.emploeemanager.dao;
+package me.mikethesupertramp.employeemanager.dao;
 
 public class Employee {
     private int id;

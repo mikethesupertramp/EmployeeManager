@@ -1,4 +1,4 @@
-package me.mikethesupertramp.emploeemanager;
+package me.mikethesupertramp.employeemanager;
 import me.mikethesupertramp.toolkit.database.SQLConnectionProvider;
 import me.mikethesupertramp.toolkit.database.SQLiteConnectionProvider;
 
