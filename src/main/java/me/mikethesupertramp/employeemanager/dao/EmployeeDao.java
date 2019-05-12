@@ -18,11 +18,11 @@ public class EmployeeDao extends AdvDao<Employee> {
     protected void prepareStatements(Connection connection) {
         try {
             createStatement = connection.prepareStatement("INSERT INTO employees " +
-                    "(id, first_name, last_name, job_title, card_id1, card_id2) VALUES (?,?,?,?,?,?);");
+                    "(id, first_name, last_name, present, late, card_id1, card_id2) VALUES (?,?,?,?,?,?,?);");
             retrieveStatement = connection.prepareStatement("SELECT * FROM employees WHERE id=?;");
             retrieveAllStatement = connection.prepareStatement("SELECT * FROM employees;");
             updateStatement = connection.prepareStatement("UPDATE employees SET " +
-                    "first_name=?, last_name=?, job_title=?, card_id1=?, card_id2=? WHERE id=?; ");
+                    "first_name=?, last_name=?, present=?, late=?, card_id1=?, card_id2=? WHERE id=?; ");
             deleteStatement = connection.prepareStatement("DELETE FROM employees WHERE id=?;");
         } catch (SQLException e) {
             onSQLException(e);
@@ -37,12 +37,14 @@ public class EmployeeDao extends AdvDao<Employee> {
                     "id INTEGER," +
                     "first_name TEXT," +
                     "last_name TEXT," +
-                    "job_title TEXT," +
+                    "present INTEGER," +
+                    "late INTEGER," +
                     "card_id1 INTEGER UNIQUE," +
                     "card_id2 INTEGER UNIQUE," +
                     "PRIMARY KEY(id)" +
                     ");"
             );
+
             statement.close();
         } catch (SQLException e) {
             onSQLException(e);
@@ -90,10 +92,11 @@ public class EmployeeDao extends AdvDao<Employee> {
             createStatement.setInt(1, employee.getId());
             createStatement.setString(2, employee.getFirstName());
             createStatement.setString(3, employee.getLastName());
-            createStatement.setString(4, employee.getJobTitle());
-            createStatement.setInt(5, employee.getCardID1());
-            createStatement.setInt(6, employee.getCardID2());
-            return createStatement.executeUpdate()==1;
+            createStatement.setBoolean(4, employee.isPresent());
+            createStatement.setBoolean(5, employee.isLate());
+            createStatement.setInt(6, employee.getCardID1());
+            createStatement.setInt(7, employee.getCardID2());
+            return createStatement.executeUpdate() == 1;
         } catch (SQLException e) {
             onSQLException(e);
         }
@@ -107,10 +110,11 @@ public class EmployeeDao extends AdvDao<Employee> {
         try {
             updateStatement.setString(1, employee.getFirstName());
             updateStatement.setString(2, employee.getLastName());
-            updateStatement.setString(3, employee.getJobTitle());
-            updateStatement.setInt(4, employee.getCardID1());
-            updateStatement.setInt(5, employee.getCardID2());
-            updateStatement.setInt(6, employee.getId());
+            updateStatement.setBoolean(3, employee.isPresent());
+            updateStatement.setBoolean(4, employee.isLate());
+            updateStatement.setInt(5, employee.getCardID1());
+            updateStatement.setInt(6, employee.getCardID2());
+            updateStatement.setInt(7, employee.getId());
             return updateStatement.executeUpdate()==1;
         } catch (SQLException e) {
             onSQLException(e);
@@ -138,7 +142,8 @@ public class EmployeeDao extends AdvDao<Employee> {
         employee.setId(rs.getInt("id"));
         employee.setFirstName(rs.getString("first_name"));
         employee.setLastName(rs.getString("last_name"));
-        employee.setJobTitle(rs.getString("job_title"));
+        employee.setPresent(rs.getBoolean("present"));
+        employee.setLate(rs.getBoolean("late"));
         employee.setCardID1(rs.getInt("card_id1"));
         employee.setCardID2(rs.getInt("card_id2"));
         return employee;

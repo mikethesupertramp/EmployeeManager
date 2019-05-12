@@ -21,7 +21,6 @@ public abstract class AdvDao<T> implements Dao<T> {
     protected boolean isInitialized() {
         return initialized;
     }
-
     protected abstract void prepareStatements(Connection connection);
     protected abstract void createTableIfNotExists(Connection connection);
     protected abstract Class<T> getDTOClass();

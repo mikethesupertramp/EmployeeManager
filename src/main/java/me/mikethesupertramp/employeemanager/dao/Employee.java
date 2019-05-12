@@ -1,10 +1,13 @@
 package me.mikethesupertramp.employeemanager.dao;
 
+import java.util.Objects;
+
 public class Employee {
     private int id;
     private String firstName;
     private String lastName;
-    private String jobTitle;
+    private boolean present;
+    private boolean late;
     private int cardID1;
     private int cardID2;
 
@@ -47,14 +50,6 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
     public int getCardID1() {
         return cardID1;
     }
@@ -71,30 +66,39 @@ public class Employee {
         this.cardID2 = cardID2;
     }
 
+    public boolean isLate() {
+        return late;
+    }
+
+    public void setLate(boolean late) {
+        this.late = late;
+    }
+
+    public boolean isPresent() {
+        return present;
+    }
+
+    public void setPresent(boolean present) {
+        this.present = present;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Employee employee = (Employee) o;
-
-        if (id != employee.id) return false;
-        if (cardID1 != employee.cardID1) return false;
-        if (cardID2 != employee.cardID2) return false;
-        if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
-        return jobTitle != null ? jobTitle.equals(employee.jobTitle) : employee.jobTitle == null;
+        return id == employee.id &&
+                present == employee.present &&
+                late == employee.late &&
+                cardID1 == employee.cardID1 &&
+                cardID2 == employee.cardID2 &&
+                Objects.equals(firstName, employee.firstName) &&
+                Objects.equals(lastName, employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (jobTitle != null ? jobTitle.hashCode() : 0);
-        result = 31 * result + cardID1;
-        result = 31 * result + cardID2;
-        return result;
+        return Objects.hash(id, firstName, lastName, present, late, cardID1, cardID2);
     }
 
     @Override
@@ -103,7 +107,8 @@ public class Employee {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
+                ", present=" + present +
+                ", late=" + late +
                 ", cardID1=" + cardID1 +
                 ", cardID2=" + cardID2 +
                 '}';

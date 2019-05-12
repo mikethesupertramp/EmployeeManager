@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../сss/employee-manager.css"
+      xmlns="http://javafx.com/javafx/8.0.171"
+      fx:controller="me.mikethesupertramp.employeemanager.ui.controllers.DashboardController">
+    <GridPane alignment="CENTER" styleClass="header">
+        <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0"/>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0"/>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <Label alignment="CENTER" text="თანამშრომლები" GridPane.columnIndex="1"/>
+        <Label fx:id="lClock" styleClass="clock" text="16:32"/>
+    </GridPane>
+    <TilePane fx:id="cDashboard" styleClass="dashboard" VBox.vgrow="ALWAYS"/>
+</VBox>

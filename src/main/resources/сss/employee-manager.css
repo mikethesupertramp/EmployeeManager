@@ -1,0 +1,71 @@
+.root {
+    -header-color: #4C5667;
+    -header-deep-color: #525E72;
+    -header-elevated-color: #5C6A7F;
+    -border-on-header-color: #586272;
+    -background-color: #FFFFFF;
+    -background-elevated-color: #F0F2F8;
+    -text-on-header-color: #FFFFFF;
+    -text-on-background-color: #8E99A4;
+    -dark-text-on-background-color: #444446;
+    -dark-element-on-background-color: #444446;
+    -text-on-elevated-background-color: #6A727B;
+    -disabled-color: #BFC5CD;
+    -red-color: #ED5565;
+    -green-color: #89CC48;
+    -blue-color: #3E9BE6;
+    -gold-color: #F6BB42;
+
+    -fx-background-color: -background-color;
+}
+
+.label {
+    -fx-font-family: "Segoe ui";
+}
+
+
+.employee-view {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: -dark-element-on-background-color;
+}
+
+.employee-view .label {
+    -fx-text-fill: -dark-text-on-background-color;
+    -fx-font-size: 22;
+}
+
+.employee-view .separator-line {
+    -fx-stroke: -disabled-color;
+    -fx-stroke-width: 2;
+}
+
+.employee-view .glyph-icon {
+    -fx-fill: -disabled-color;
+}
+
+.header {
+    -fx-background-color: -header-color;
+    -fx-padding: 10 10 10 10;
+}
+
+.header .label {
+    -fx-text-fill: -text-on-header-color;
+    -fx-font-size: 42;
+}
+
+.header .clock {
+    -fx-font-size: 48;
+    -fx-border-width: 2;
+    -fx-border-radius:10;
+    -fx-border-color: -border-on-header-color;
+    -fx-padding: 5 30 5 30;
+}
+
+.dashboard {
+    -fx-padding: 20;
+    -fx-vgap: 10;
+    -fx-hgap: 10;
+    -fx-orientation: vertical;
+}
