@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER_LEFT" fillHeight="false" maxHeight="-Infinity"
+      maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0"
+      styleClass="loading-bar" stylesheets="@../сss/employee-manager.css" xmlns="http://javafx.com/javafx/8.0.171">
+    <children>
+        <JFXSpinner startingAngle="0.0"/>
+        <Label text="Processing..."/>
+    </children>
+</HBox>

@@ -89,3 +89,9 @@
     -fx-hgap: 10;
     -fx-orientation: vertical;
 }
+
+.loading-bar {
+    -fx-background-color: -background-elevated-color;
+    -fx-padding: 50;
+    -fx-spacing: 30;
+}

@@ -45,6 +45,12 @@
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.1stleg</groupId>
+            <artifactId>jnativehook</artifactId>
+            <version>2.1.0</version>
+        </dependency>
     </dependencies>
 
 
