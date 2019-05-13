@@ -11,10 +11,8 @@ public class DatabaseManager {
     private Set<AdvDao> daos = new HashSet<>();
 
     public DatabaseManager(SQLConnectionProvider connectionProvider, SQLExceptionListener exceptionListener) {
-        System.out.println("Initializing database");
         this.exceptionListener = exceptionListener;
         connection = connectionProvider.getConnection();
-        System.out.println("Database initialized successfully");
     }
 
     public void addDao(AdvDao dao) {

@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 import me.mikethesupertramp.employeemanager.ui.controllers.DashboardController;
 import me.mikethesupertramp.toolkit.database.SQLConnectionProvider;
 import me.mikethesupertramp.toolkit.database.SQLiteConnectionProvider;
+import me.mikethesupertramp.toolkit.rfid.JavaFxDispatchService;
 import me.mikethesupertramp.toolkit.rfid.RFIDReader;
 import org.jnativehook.NativeHookException;
 
@@ -20,9 +21,9 @@ import java.io.IOException;
 
 public class App extends Application {
     private DashboardController dashboardController;
-    private EmployeeDatabaseManager dbManager;
+    private EmployeeDatabaseManager db;
     private RFIDReader rfidReader;
-
+    private EnrollmentController enrollmentController;
     private Stage dashboardStage;
     private Stage loadingStage;
 
@@ -36,15 +37,26 @@ public class App extends Application {
         initUI(primaryStage);
         initDB();
         initRFID();
+        initSystems();
+        postInit();
+
+    }
+
+    private void postInit() {
+        System.out.println("Post initialization");
+        dashboardController.updateEmployees(db.employee.getAll());
     }
 
     private void initUI(Stage primaryStage) throws IOException {
+        System.out.println("Initializing user interface..");
         initDashboardStage(primaryStage);
         initLoadingStage();
+        System.out.println("User interface initialised successfully");
     }
 
 
     private void initDashboardStage(Stage primaryStage) throws IOException {
+        System.out.println("Initializing dashboard");
         dashboardStage = primaryStage;
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
                 "/fxml/dashboard.fxml"));
@@ -55,10 +67,10 @@ public class App extends Application {
         primaryStage.setMaximized(true);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-
     }
 
     private void initLoadingStage() throws IOException {
+        System.out.println("Initializing loading-bar");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
                 "/fxml/loading.fxml"));
         Scene loadingScene = new Scene(fxmlLoader.load());
@@ -78,24 +90,32 @@ public class App extends Application {
     }
 
     private void initDB() {
+        System.out.println("Initializing database...");
         SQLConnectionProvider connectionProvider = new SQLiteConnectionProvider("employees.db");
-        dbManager = new EmployeeDatabaseManager(connectionProvider, System.out::println);
-        dbManager.employee.addListener(e -> {
+        db = new EmployeeDatabaseManager(connectionProvider, System.out::println);
+        db.employee.addListener(e -> {
             Platform.runLater(() ->
-                    dashboardController.updateEmployees(dbManager.employee.getAll())
+                    dashboardController.updateEmployees(db.employee.getAll())
             );
         });
+        System.out.println("Database initialized successfully");
+    }
+
+    private void initSystems() {
+        System.out.println("Initializing systems");
+        enrollmentController = new EnrollmentController(db);
+        rfidReader.addListener(enrollmentController);
     }
 
     private void initRFID() {
+        //
         try {
-            RFIDReader.init();
+            RFIDReader.init(new JavaFxDispatchService());
         } catch (NativeHookException e) {
             e.printStackTrace();
             //todo show error message
         }
         rfidReader = RFIDReader.getInstance();
-        rfidReader.addListener(System.out::println);
     }
 
     @Override
@@ -103,4 +123,6 @@ public class App extends Application {
         super.stop();
         RFIDReader.shutdown();
     }
+
+
 }

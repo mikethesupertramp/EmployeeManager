@@ -26,6 +26,14 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    public Employee(int id, String firstName, String lastName, int cardID1, int cardID2) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.cardID1 = cardID1;
+        this.cardID2 = cardID2;
+    }
+
     public int getId() {
         return id;
     }

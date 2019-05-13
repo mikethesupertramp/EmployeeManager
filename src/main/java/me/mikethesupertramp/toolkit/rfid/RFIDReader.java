@@ -8,6 +8,7 @@ import org.jnativehook.keyboard.NativeKeyListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ public class RFIDReader implements NativeKeyListener {
     private boolean enabled = true;
     private String sequence = "";
     private long lastPress;
-    private List<RFIDListener> listeners = new ArrayList<>();
+    private List<SequenceListener> listeners = new ArrayList<>();
 
     private RFIDReader() {
     }
@@ -35,10 +36,11 @@ public class RFIDReader implements NativeKeyListener {
         logger.setUseParentHandlers(false);
     }
 
-    public static void init() throws NativeHookException {
+    public static void init(ExecutorService executorService) throws NativeHookException {
         disableLogging();
         GlobalScreen.registerNativeHook();
         GlobalScreen.addNativeKeyListener(ourInstance);
+        GlobalScreen.setEventDispatcher(executorService);
     }
 
     public static void shutdown() throws NativeHookException {
@@ -57,7 +59,7 @@ public class RFIDReader implements NativeKeyListener {
     }
 
     private void notifyListeners(String sequence) {
-        listeners.forEach((l) -> l.onRFIDInput(sequence));
+        listeners.forEach((l) -> l.onSequence(sequence));
     }
 
     private void clean() {
@@ -140,11 +142,11 @@ public class RFIDReader implements NativeKeyListener {
         this.enabled = enabled;
     }
 
-    public void addListener(RFIDListener listener) {
+    public void addListener(SequenceListener listener) {
         listeners.add(listener);
     }
 
-    public void removeListener(RFIDListener listener) {
+    public void removeListener(SequenceListener listener) {
         listeners.remove(listener);
     }
 

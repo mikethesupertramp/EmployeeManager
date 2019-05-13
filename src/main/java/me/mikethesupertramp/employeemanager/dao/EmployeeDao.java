@@ -12,6 +12,7 @@ public class EmployeeDao extends AdvDao<Employee> {
     private PreparedStatement createStatement;
     private PreparedStatement retrieveStatement;
     private PreparedStatement retrieveAllStatement;
+    private PreparedStatement retrieveByCardIdStatement;
     private PreparedStatement updateStatement;
     private PreparedStatement deleteStatement;
 
@@ -22,6 +23,8 @@ public class EmployeeDao extends AdvDao<Employee> {
                     "(id, first_name, last_name, present, late, card_id1, card_id2) VALUES (?,?,?,?,?,?,?);");
             retrieveStatement = connection.prepareStatement("SELECT * FROM employees WHERE id=?;");
             retrieveAllStatement = connection.prepareStatement("SELECT * FROM employees;");
+            retrieveByCardIdStatement = connection.prepareStatement("SELECT * FROM employees " +
+                    "WHERE card_id1=? OR card_id2=?;");
             updateStatement = connection.prepareStatement("UPDATE employees SET " +
                     "first_name=?, last_name=?, present=?, late=?, card_id1=?, card_id2=? WHERE id=?; ");
             deleteStatement = connection.prepareStatement("DELETE FROM employees WHERE id=?;");
@@ -84,6 +87,21 @@ public class EmployeeDao extends AdvDao<Employee> {
         }
 
         return result;
+    }
+
+    public Optional<Employee> geByCardId(int cardId) {
+        try {
+            retrieveByCardIdStatement.setInt(1, cardId);
+            retrieveByCardIdStatement.setInt(2, cardId);
+            ResultSet rs = retrieveByCardIdStatement.executeQuery();
+            if (rs.next()) {
+                return Optional.of(extract(rs));
+            }
+        } catch (SQLException e) {
+            onSQLException(e);
+        }
+
+        return Optional.empty();
     }
 
     @Override
