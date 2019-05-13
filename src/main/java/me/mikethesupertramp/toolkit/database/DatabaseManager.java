@@ -1,8 +1,8 @@
 package me.mikethesupertramp.toolkit.database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 public class DatabaseManager {
@@ -26,7 +26,7 @@ public class DatabaseManager {
         dao.initialize(connection, exceptionListener);
     }
 
-    public <T> Dao<T> getFor(Class<T> type) {
+    public <T> AdvDao<T> getFor(Class<T> type) {
         return daos.stream()
                 .filter(dao -> dao.getDTOClass().equals(type))
                 .findAny()

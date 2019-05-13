@@ -47,20 +47,40 @@
 
 .header {
     -fx-background-color: -header-color;
-    -fx-padding: 10 10 10 10;
+    -fx-padding: 10 30 10 30;
+}
+
+.header .button {
+    -fx-background-color: transparent;
 }
 
 .header .label {
     -fx-text-fill: -text-on-header-color;
-    -fx-font-size: 42;
+}
+
+.header .glyph-icon {
+    -fx-fill: -text-on-header-color;
 }
 
 .header .clock {
-    -fx-font-size: 48;
     -fx-border-width: 2;
-    -fx-border-radius:10;
+    -fx-border-radius: 50;
     -fx-border-color: -border-on-header-color;
-    -fx-padding: 5 30 5 30;
+    -fx-padding: 5 100 5 100;
+}
+
+.header .clock .time {
+    -fx-font-size: 48;
+}
+
+.header .clock .date {
+    -fx-font-size: 16;
+}
+
+.header .left-bar {
+     -fx-border-width: 2;
+     -fx-border-radius: 50;
+     -fx-border-color: -border-on-header-color;
 }
 
 .dashboard {

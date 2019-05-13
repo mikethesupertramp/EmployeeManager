@@ -8,9 +8,9 @@ public interface Dao<T> {
 
     Set<T> getAll();
 
-    boolean insert(T t);
+    boolean insert(T dto);
 
-    boolean update(T t);
+    boolean update(T dto);
 
-    boolean delete(T t);
+    boolean delete(T dto);
 }

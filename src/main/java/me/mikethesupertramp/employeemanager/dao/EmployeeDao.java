@@ -1,6 +1,7 @@
 package me.mikethesupertramp.employeemanager.dao;
 
 import me.mikethesupertramp.toolkit.database.AdvDao;
+import me.mikethesupertramp.toolkit.database.DataChangeEvent;
 
 import java.sql.*;
 import java.util.HashSet;
@@ -96,7 +97,10 @@ public class EmployeeDao extends AdvDao<Employee> {
             createStatement.setBoolean(5, employee.isLate());
             createStatement.setInt(6, employee.getCardID1());
             createStatement.setInt(7, employee.getCardID2());
-            return createStatement.executeUpdate() == 1;
+            if (createStatement.executeUpdate() == 1) {
+                notifyListeners(new DataChangeEvent<>(DataChangeEvent.TYPE.INSERT, employee));
+                return true;
+            }
         } catch (SQLException e) {
             onSQLException(e);
         }
@@ -115,7 +119,10 @@ public class EmployeeDao extends AdvDao<Employee> {
             updateStatement.setInt(5, employee.getCardID1());
             updateStatement.setInt(6, employee.getCardID2());
             updateStatement.setInt(7, employee.getId());
-            return updateStatement.executeUpdate()==1;
+            if (updateStatement.executeUpdate() == 1) {
+                notifyListeners(new DataChangeEvent<>(DataChangeEvent.TYPE.UPDATE, employee));
+                return true;
+            }
         } catch (SQLException e) {
             onSQLException(e);
         }
@@ -129,7 +136,10 @@ public class EmployeeDao extends AdvDao<Employee> {
 
         try {
             deleteStatement.setInt(1, employee.getId());
-            return deleteStatement.executeUpdate()==1;
+            if (deleteStatement.executeUpdate() == 1) {
+                notifyListeners(new DataChangeEvent<>(DataChangeEvent.TYPE.DELETE, employee));
+                return true;
+            }
         } catch (SQLException e) {
             onSQLException(e);
         }
