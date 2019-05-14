@@ -2,6 +2,7 @@ package me.mikethesupertramp.employeemanager;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -18,6 +19,8 @@ import me.mikethesupertramp.toolkit.rfid.RFIDReader;
 import org.jnativehook.NativeHookException;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class App extends Application {
     private DashboardController dashboardController;
@@ -26,6 +29,7 @@ public class App extends Application {
     private EnrollmentController enrollmentController;
     private Stage dashboardStage;
     private Stage loadingStage;
+    private ExecutorService executorService;
 
 
     public static void main(String[] args) {
@@ -34,12 +38,19 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        executorService = Executors.newFixedThreadPool(1);
         initUI(primaryStage);
-        initDB();
-        initRFID();
-        initSystems();
-        postInit();
-
+        Task task = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                initDB();
+                initRFID();
+                initSystems();
+                return null;
+            }
+        };
+        task.setOnSucceeded((e) -> postInit());
+        executorService.execute(task);
     }
 
     private void postInit() {
@@ -90,7 +101,7 @@ public class App extends Application {
     }
 
     private void initDB() {
-        System.out.println("Initializing database...");
+        System.out.println("Initializing database");
         SQLConnectionProvider connectionProvider = new SQLiteConnectionProvider("employees.db");
         db = new EmployeeDatabaseManager(connectionProvider, System.out::println);
         db.employee.addListener(e -> {
@@ -98,7 +109,6 @@ public class App extends Application {
                     dashboardController.updateEmployees(db.employee.getAll())
             );
         });
-        System.out.println("Database initialized successfully");
     }
 
     private void initSystems() {
@@ -122,6 +132,7 @@ public class App extends Application {
     public void stop() throws Exception {
         super.stop();
         RFIDReader.shutdown();
+        executorService.shutdown();
     }
 
 
