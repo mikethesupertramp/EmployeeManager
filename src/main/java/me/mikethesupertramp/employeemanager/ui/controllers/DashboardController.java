@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -33,6 +34,9 @@ public class DashboardController {
     private Label lClock;
     @FXML
     private TilePane cDashboard;
+
+    private EventHandler<ActionEvent> onExitButtonPressedListener;
+    private EventHandler<ActionEvent> onOpenAdminPanelButtonPressedListener;
 
     @FXML
     private void initialize() {
@@ -73,10 +77,19 @@ public class DashboardController {
         }
     }
 
-    public void openAdminPanel(ActionEvent actionEvent) {
-
+    public void onAdminPanelButtonPressed(ActionEvent e) {
+        if (onOpenAdminPanelButtonPressedListener != null) onOpenAdminPanelButtonPressedListener.handle(e);
     }
 
-    public void exit(ActionEvent actionEvent) {
+    public void onExitButtonPressed(ActionEvent e) {
+        if (onExitButtonPressedListener != null) onExitButtonPressedListener.handle(e);
+    }
+
+    public void setOnExitButtonPressed(EventHandler<ActionEvent> listener) {
+        this.onExitButtonPressedListener = listener;
+    }
+
+    public void setOnOpenAdminPanelButtonPressed(EventHandler<ActionEvent> listener) {
+        this.onOpenAdminPanelButtonPressedListener = listener;
     }
 }

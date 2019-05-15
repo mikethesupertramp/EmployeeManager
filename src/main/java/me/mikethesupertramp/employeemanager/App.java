@@ -7,10 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import me.mikethesupertramp.employeemanager.ui.controllers.AdminPanelController;
 import me.mikethesupertramp.employeemanager.ui.controllers.DashboardController;
 import me.mikethesupertramp.toolkit.database.SQLConnectionProvider;
 import me.mikethesupertramp.toolkit.database.SQLiteConnectionProvider;
@@ -24,12 +26,16 @@ import java.util.concurrent.Executors;
 
 public class App extends Application {
     private DashboardController dashboardController;
+    private AdminPanelController adminPanelController;
     private EmployeeDatabaseManager db;
     private RFIDReader rfidReader;
     private EnrollmentController enrollmentController;
-    private Stage dashboardStage;
+    private Stage mainStage;
     private Stage loadingStage;
     private ExecutorService executorService;
+    private Parent dashboardView;
+    private Parent adminPanelView;
+
 
 
     public static void main(String[] args) {
@@ -42,63 +48,93 @@ public class App extends Application {
         initUI(primaryStage);
         Task task = new Task() {
             @Override
-            protected Object call() throws Exception {
+            protected Object call() {
                 initDB();
                 initRFID();
                 initSystems();
                 return null;
             }
         };
-        task.setOnSucceeded((e) -> postInit());
+        task.setOnSucceeded((e) -> {
+            postInit();
+        });
         executorService.execute(task);
     }
 
     private void postInit() {
         System.out.println("Post initialization");
         dashboardController.updateEmployees(db.employee.getAll());
+        loadingStage.hide();
     }
 
     private void initUI(Stage primaryStage) throws IOException {
         System.out.println("Initializing user interface..");
-        initDashboardStage(primaryStage);
         initLoadingStage();
+        loadingStage.show();
+
+        initMainStage(primaryStage);
+        loadDashboard();
+        loadAdminPanel();
+        setMainView(dashboardView);
+        mainStage.show();
+        dashboardController.setOnExitButtonPressed(e -> mainStage.close());
+        dashboardController.setOnOpenAdminPanelButtonPressed((e) -> setMainView(adminPanelView));
+        adminPanelController.setOnBackButtonPressed((e) -> setMainView(dashboardView));
         System.out.println("User interface initialised successfully");
     }
 
+    private void setMainView(Parent root) {
+        mainStage.getScene().setRoot(root);
+    }
 
-    private void initDashboardStage(Stage primaryStage) throws IOException {
-        System.out.println("Initializing dashboard");
-        dashboardStage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
-                "/fxml/dashboard.fxml"));
-        Parent root = fxmlLoader.load();
-        dashboardController = fxmlLoader.getController();
-        Scene mainScene = new Scene(root);
-        primaryStage.setScene(mainScene);
+
+    private void initMainStage(Stage primaryStage) {
+        System.out.println("Initializing main stage");
+        mainStage = primaryStage;
         primaryStage.setMaximized(true);
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.show();
+        primaryStage.setScene(new Scene(new Pane()));
     }
 
     private void initLoadingStage() throws IOException {
-        System.out.println("Initializing loading-bar");
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
-                "/fxml/loading.fxml"));
-        Scene loadingScene = new Scene(fxmlLoader.load());
+        System.out.println("Initializing loading stage");
         loadingStage = new Stage(StageStyle.UNDECORATED);
-        loadingStage.setScene(loadingScene);
         loadingStage.initModality(Modality.APPLICATION_MODAL);
-        loadingStage.initOwner(dashboardStage);
+        loadingStage.initOwner(mainStage);
         loadingStage.setAlwaysOnTop(true);
         loadingStage.setOnCloseRequest((e) -> {
-            dashboardStage.close();
+            mainStage.close();
         });
         loadingStage.setOnShown((e) -> {
             Rectangle2D screenBounds = Screen.getPrimary().getBounds();
             loadingStage.setX(screenBounds.getWidth() / 2 - loadingStage.getWidth() / 2);
             loadingStage.setY(screenBounds.getHeight() / 2 - loadingStage.getHeight() / 2);
         });
+        System.out.println("Initializing loading-bar");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
+                "/fxml/loading.fxml"));
+        Parent root = fxmlLoader.load();
+        loadingStage.setScene(new Scene(root));
     }
+
+    private void loadDashboard() throws IOException {
+        System.out.println("Initializing dashboard");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
+                "/fxml/dashboard.fxml"));
+        Parent root = fxmlLoader.load();
+        dashboardController = fxmlLoader.getController();
+        dashboardView = root;
+    }
+
+    private void loadAdminPanel() throws IOException {
+        System.out.println("Initializing admin-panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(
+                "/fxml/admin-panel.fxml"));
+        Parent root = fxmlLoader.load();
+        adminPanelController = fxmlLoader.getController();
+        adminPanelView = root;
+    }
+
 
     private void initDB() {
         System.out.println("Initializing database");

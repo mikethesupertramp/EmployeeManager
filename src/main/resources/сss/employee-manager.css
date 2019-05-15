@@ -23,6 +23,10 @@
     -fx-font-family: "Segoe ui";
 }
 
+.list-cell {
+    -fx-font-family: "Segoe ui";
+}
+
 
 .employee-view {
     -fx-background-radius: 10;
@@ -60,6 +64,7 @@
 
 .header .glyph-icon {
     -fx-fill: -text-on-header-color;
+    -glyph-size: 42;
 }
 
 .header .clock {
@@ -94,4 +99,42 @@
     -fx-background-color: -background-elevated-color;
     -fx-padding: 50;
     -fx-spacing: 30;
+}
+
+.side-bar {
+    -fx-background-color: -header-color;
+    -fx-spacing: 40;
+}
+
+.side-bar .button {
+    -fx-background-color: transparent;
+}
+
+.side-bar .glyph-icon {
+    -fx-fill: -text-on-header-color;
+}
+
+.side-bar .list-view {
+    -fx-background-color: transparent;
+}
+
+.side-bar .header {
+    -fx-padding: 10;
+}
+
+.side-bar .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-on-header-color;
+    -fx-font-size: 18;
+    -fx-padding: 10 0 10 20;
+    -glyph-size:45;
+    -fx-graphic-text-gap: 10;
+}
+
+.side-bar .list-cell .glyph-icon {
+    -glyph-size:22;
+}
+
+.side-bar .list-cell:selected {
+    -fx-background-color: #FFFFFF33;
 }

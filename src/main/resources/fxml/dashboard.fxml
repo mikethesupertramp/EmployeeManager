@@ -24,14 +24,14 @@
                     <Label fx:id="lDate" styleClass="date" text="date"/>
                 </children>
             </VBox>
-            <Button fx:id="bAdmin" accessibleRole="MENU" onAction="#openAdminPanel">
+            <Button fx:id="bAdmin" accessibleRole="MENU" onAction="#onAdminPanelButtonPressed">
                 <graphic>
-                    <FontAwesomeIconView glyphName="USER" size="42"/>
+                    <FontAwesomeIconView glyphName="USER" size="12"/>
                 </graphic>
             </Button>
-            <Button fx:id="bExit" onAction="#exit" GridPane.columnIndex="2">
+            <Button fx:id="bExit" onAction="#onExitButtonPressed" GridPane.columnIndex="2">
                 <graphic>
-                    <FontAwesomeIconView glyphName="ARROW_CIRCLE_ALT_RIGHT" size="42"/>
+                    <FontAwesomeIconView glyphName="ARROW_CIRCLE_ALT_RIGHT" size="12"/>
                 </graphic>
             </Button>
         </children>

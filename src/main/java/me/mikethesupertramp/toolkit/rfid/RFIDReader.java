@@ -19,7 +19,6 @@ public class RFIDReader implements NativeKeyListener {
     private long minSequenceLength = 7;
     private String sequenceEndCharacter = "ENTER";
     private List<String> allowedCharacters = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    private boolean enabled = true;
     private String sequence = "";
     private long lastPress;
     private List<SequenceListener> listeners = new ArrayList<>();
@@ -132,14 +131,6 @@ public class RFIDReader implements NativeKeyListener {
 
     public void setAllowedCharacters(List<String> allowedCharacters) {
         this.allowedCharacters = allowedCharacters;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public void addListener(SequenceListener listener) {
