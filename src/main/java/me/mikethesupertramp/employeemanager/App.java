@@ -46,6 +46,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         executorService = Executors.newFixedThreadPool(1);
         initUI(primaryStage);
+        loadingStage.show();
         Task task = new Task() {
             @Override
             protected Object call() {
@@ -69,10 +70,8 @@ public class App extends Application {
 
     private void initUI(Stage primaryStage) throws IOException {
         System.out.println("Initializing user interface..");
-        initLoadingStage();
-        loadingStage.show();
-
         initMainStage(primaryStage);
+        initLoadingStage();
         loadDashboard();
         loadAdminPanel();
         setMainView(dashboardView);

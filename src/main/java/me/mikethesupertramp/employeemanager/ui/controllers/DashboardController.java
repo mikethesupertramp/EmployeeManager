@@ -17,6 +17,7 @@ import me.mikethesupertramp.employeemanager.ui.controls.EmployeeView;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Set;
@@ -53,7 +54,10 @@ public class DashboardController {
     }
 
     public void updateEmployees(Set<Employee> employees) {
-        Iterator<Employee> employeeIterator = employees.iterator();
+        Iterator<Employee> employeeIterator = employees.stream()
+                .sorted(Comparator.comparingInt(Employee::getId))
+                .iterator();
+
         ListIterator<Node> employeeViewIterator = cDashboard.getChildren().listIterator();
 
         while (employeeIterator.hasNext()) {
