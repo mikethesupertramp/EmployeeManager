@@ -4,12 +4,12 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.scene.Parent;
 
 public class SidebarMenuItem {
-    private Parent root;
+    private Parent panel;
     private FontAwesomeIcon icon;
     private String text;
 
-    public SidebarMenuItem(Parent root, FontAwesomeIcon icon, String text) {
-        this.root = root;
+    public SidebarMenuItem(Parent panel, FontAwesomeIcon icon, String text) {
+        this.panel = panel;
         this.icon = icon;
         this.text = text;
     }
@@ -30,7 +30,7 @@ public class SidebarMenuItem {
         this.text = text;
     }
 
-    public Parent getRoot() {
-        return root;
+    public Parent getPanel() {
+        return panel;
     }
 }
