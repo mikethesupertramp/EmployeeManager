@@ -14,7 +14,6 @@ import me.mikethesupertramp.employeemanager.ui.panels.EmployeesPanel;
 
 public class AdminPanelController {
     public final EmployeesPanel employeesPanel;
-
     @FXML
     public AnchorPane contentBox;
     @FXML
@@ -31,8 +30,7 @@ public class AdminPanelController {
         lvMenuItems.getItems().addAll(
                 new SidebarMenuItem(employeesPanel, FontAwesomeIcon.GROUP, "თანამშრომლები"),
                 new SidebarMenuItem(null, FontAwesomeIcon.HOURGLASS_2, "განრიგი"),
-                new SidebarMenuItem(null, FontAwesomeIcon.FILE_TEXT, "დღიური ანგარიში"),
-                new SidebarMenuItem(null, FontAwesomeIcon.CALENDAR_CHECK_ALT, "თვიური ანგარიში"),
+                new SidebarMenuItem(null, FontAwesomeIcon.CALENDAR_CHECK_ALT, "ანგარიში"),
                 new SidebarMenuItem(null, FontAwesomeIcon.COG, "პარამეტრები")
         );
 
@@ -44,6 +42,10 @@ public class AdminPanelController {
         contentBox.getChildren().filtered(e -> e instanceof Displayable).forEach(e -> ((Displayable) e).onClosing());
         contentBox.getChildren().clear();
         if (panel instanceof Displayable) ((Displayable) panel).onShowing();
+        AnchorPane.setLeftAnchor(panel, 0.0);
+        AnchorPane.setRightAnchor(panel, 0.0);
+        AnchorPane.setTopAnchor(panel, 0.0);
+        AnchorPane.setBottomAnchor(panel, 0.0);
         contentBox.getChildren().add(panel);
     }
 
