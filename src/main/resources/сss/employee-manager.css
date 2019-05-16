@@ -103,7 +103,7 @@
 
 .side-bar {
     -fx-background-color: -header-color;
-    -fx-spacing: 40;
+    -fx-spacing: 20;
 }
 
 .side-bar .button {
@@ -138,4 +138,46 @@
 .side-bar .list-cell:selected {
     -fx-background-color: #FFFFFF33;
 }
+
+.h1 {
+    -fx-font-size: 42;
+}
+
+.flat-button {
+    -fx-background-color: transparent;
+    -fx-pref-height: 30;
+    -fx-pref-width: 120;
+    -fx-border-width: 2;
+    -fx-border-color: -dark-element-on-background-color;
+    -fx-border-radius: 50;
+    -fx-graphic-text-gap: 5;
+    -fx-text-fill: -dark-text-on-background-color;;
+    -fx-font-size: 14;
+}
+
+.flat-button .glyph-icon {
+    -glyph-size:22;
+    -fx-fill: -dark-text-on-background-color;
+}
+
+.panel {
+    -fx-padding: 20;
+}
+
+.table-view {
+    -fx-background-color: -background-elevated-color;
+}
+
+.table-view .table-column {
+    -fx-background-color: -header-color;
+    -fx-pref-height: 40;
+}
+
+.table-view .column-header-background .label{
+    -fx-text-fill: -text-on-header-color;
+    -fx-font-size: 16;
+}
+
+
+
 

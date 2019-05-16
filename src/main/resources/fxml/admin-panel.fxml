@@ -23,6 +23,6 @@
                 <ListView fx:id="lvMenuItems" prefWidth="250.0" VBox.vgrow="ALWAYS"/>
             </children>
         </VBox>
-        <VBox fx:id="contentBox"/>
+        <AnchorPane fx:id="contentBox" HBox.hgrow="ALWAYS"/>
     </children>
 </HBox>

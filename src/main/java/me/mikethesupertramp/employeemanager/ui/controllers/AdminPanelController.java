@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import me.mikethesupertramp.employeemanager.ui.SidebarMenuCell;
 import me.mikethesupertramp.employeemanager.ui.SidebarMenuItem;
 import me.mikethesupertramp.employeemanager.ui.panels.Displayable;
@@ -16,11 +16,9 @@ public class AdminPanelController {
     public final EmployeesPanel employeesPanel;
 
     @FXML
-    public VBox contentBox;
+    public AnchorPane contentBox;
     @FXML
     private ListView<SidebarMenuItem> lvMenuItems;
-
-
     private EventHandler<ActionEvent> onBackButtonPressedListener;
 
     public AdminPanelController() {
