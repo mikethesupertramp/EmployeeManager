@@ -20,12 +20,30 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>8.8.3</version>
                 <configuration>
-                    <mainClass>me.mikethesupertramp.employeemanager.App</mainClass>
+                    <mainClass>me.mikethesupertramp.employeemanager.Launcher</mainClass>
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
-
 
     <dependencies>
         <dependency>
@@ -33,23 +51,25 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.27.2.1</version>
         </dependency>
-
         <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx</artifactId>
             <version>8.9</version>
         </dependency>
-
         <dependency>
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
         </dependency>
-
         <dependency>
             <groupId>com.1stleg</groupId>
             <artifactId>jnativehook</artifactId>
             <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.airhacks</groupId>
+            <artifactId>afterburner.fx</artifactId>
+            <version>1.7.0</version>
         </dependency>
     </dependencies>
 

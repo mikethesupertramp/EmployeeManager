@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171"
+      fx:controller="me.mikethesupertramp.employeemanager.presentation.dashboard.DashboardPresenter">
+    <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0"/>
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0"/>
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints fillHeight="false" minHeight="10.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <VBox alignment="CENTER" styleClass="clock" GridPane.columnIndex="1">
+            <Label fx:id="lClock" styleClass="time" text="00:00"/>
+            <Label fx:id="lDate" styleClass="date" text="date"/>
+        </VBox>
+        <Button accessibleRole="MENU" onAction="#onAdminPanelButtonPressed">
+            <graphic>
+                <FontAwesomeIconView glyphName="USER" size="12"/>
+            </graphic>
+        </Button>
+        <Button onAction="#onExitButtonPressed" GridPane.columnIndex="2">
+            <graphic>
+                <FontAwesomeIconView glyphName="ARROW_CIRCLE_ALT_RIGHT" size="12"/>
+            </graphic>
+        </Button>
+        <styleClass>
+            <String fx:value="header"/>
+            <String fx:value="primary"/>
+        </styleClass>
+    </GridPane>
+    <TilePane fx:id="cDashboard" styleClass="dashboard" VBox.vgrow="ALWAYS"/>
+</VBox>

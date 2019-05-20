@@ -1,0 +1,29 @@
+.header {
+    -fx-padding: 10 30 10 30;
+}
+
+.header .clock {
+    -fx-border-width: 2;
+    -fx-border-radius: 50;
+    -fx-border-color: -primary-color-light;
+    -fx-padding: 5 100 5 100;
+}
+
+.header .clock .time {
+    -fx-font-size: 48;
+}
+
+.header .clock .date {
+    -fx-font-size: 16;
+}
+
+.header .glyph-icon{
+    -glyph-size: 42;
+}
+
+.dashboard {
+    -fx-padding: 20;
+    -fx-vgap: 10;
+    -fx-hgap: 10;
+    -fx-orientation: vertical;
+}

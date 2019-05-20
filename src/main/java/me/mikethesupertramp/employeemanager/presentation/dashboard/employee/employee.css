@@ -1,0 +1,27 @@
+.employee-view {
+    -fx-background-radius: 10;
+    -fx-background-color: transparent;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-border-color: -element-on-background-color;
+
+    -fx-pref-width: 320;
+    -fx-pref-height: 50;
+    -fx-padding: 0 10 0 0;
+    -fx-spacing: 10;
+}
+
+.label {
+    -fx-font-size: 22;
+}
+
+.separator-line {
+    -fx-stroke: -disabled-color;
+    -fx-stroke-width: 2;
+}
+
+.glyph-icon {
+    -fx-fill: -disabled-color;
+    -glyph-size: 20;
+}
+

@@ -1,0 +1,149 @@
+.root {
+    -primary-color: #4C5667;
+    -primary-color-dark: derive(-primary-color, -10%);
+    -primary-color-light: derive(-primary-color, 10%);
+    -text-on-primary-color: WHITE;
+    -background-color: WHITE;
+    -background-color-dark: derive(-background-color, -10%);
+    -background-color-darker: derive(-background-color, -20%);
+    -background-color-darkest: derive(-background-color, -30%);
+    -text-on-background-color: #444446;
+    -element-on-background-color: #444446;
+    -transparent-white-color: #FFFFFF33;
+
+    -disabled-color: #BFC5CD;
+    -red-color: #ED5565;
+    -green-color: #89CC48;
+    -blue-color: #3E9BE6;
+    -gold-color: #F6BB42;
+
+    -fx-background-color: -background-color;
+}
+
+.label {
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: -text-on-background-color;
+}
+
+.cell {
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: -text-on-background-color;
+}
+
+.primary {
+    -fx-background-color: -primary-color;
+}
+
+.primary .label {
+    -fx-text-fill: -text-on-primary-color;
+}
+
+.primary .cell {
+    -fx-text-fill: -text-on-primary-color;
+}
+
+.primary .glyph-icon {
+    -fx-fill: -text-on-primary-color;
+}
+
+
+.button {
+    -fx-background-color: transparent;
+}
+
+.h1 {
+    -fx-font-size: 42;
+}
+
+.h2 {
+    -fx-font-size: 36;
+}
+
+
+.panel {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+.round-button {
+    -fx-pref-height: 30;
+    -fx-border-width: 2;
+    -fx-border-color: -element-on-background-color;
+    -fx-border-radius: 50;
+    -fx-graphic-text-gap: 5;
+    -fx-font-size: 14;
+}
+
+.round-button .glyph-icon {
+    -glyph-size:22;
+    -fx-fill: -element-on-background-color;
+}
+
+.round-button .add-icon {
+    -fx-fill: -green-color;
+}
+
+.round-button .edit-icon {
+    -fx-fill: -gold-color;
+}
+
+.round-button .remove-icon {
+    -fx-fill: -red-color;
+}
+
+.button-bar {
+    -fx-spacing: 10;
+    -fx-padding: 30 0 0 0;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -primary-color;
+    -fx-pref-height: 60;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: -text-on-primary-color;
+    -fx-font-size: 16;
+    -fx-font-weight: normal;
+}
+
+.table-view .filler{
+    -fx-background-color: transparent;
+}
+.table-view .column-header{
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar .decrement-arrow,
+.table-view .scroll-bar .increment-arrow {
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+.table-view .scroll-bar:vertical,
+.table-view .scroll-bar:horizontal {
+    -fx-background-color: -background-color-dark;
+    -fx-padding: 0;
+}
+
+.table-view .scroll-bar .thumb {
+    -fx-background-color: -background-color-darkest;
+}
+
+.table-row-cell {
+    -fx-table-cell-border-color:-background-color-darkest;
+}
+
+.table-view .table-cell{
+    -fx-font-size:16;
+}
+
+
+
+
+
+

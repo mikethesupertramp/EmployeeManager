@@ -1,0 +1,31 @@
+.side-bar {
+    -fx-pref-width: 300;
+}
+
+.side-bar .header {
+    -fx-padding: 10;
+}
+
+.side-bar .header .glyph-icon {
+    -glyph-size: 42;
+}
+
+.side-bar .list-view {
+    -fx-background-color: transparent;
+}
+
+.side-bar .list-cell {
+    -fx-background-color: transparent;
+    -fx-font-size: 18;
+    -fx-padding: 10 0 10 20;
+    -fx-graphic-text-gap: 10;
+}
+
+.side-bar .list-cell:selected {
+    -fx-background-color: -transparent-white-color;
+}
+
+.side-bar .list-cell .glyph-icon {
+    -glyph-size:22;
+}
+

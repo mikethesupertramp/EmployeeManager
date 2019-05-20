@@ -1,0 +1,151 @@
+.root {
+    -header-color: #4C5667;
+    -header-deep-color: #525E72;
+    -header-elevated-color: #5C6A7F;
+    -border-on-header-color: #586272;
+    -background-color: #FFFFFF;
+    -background-elevated-color: #F0F2F8;
+    -text-on-header-color: #FFFFFF;
+    -text-on-background-color: #8E99A4;
+    -dark-text-on-background-color: #444446;
+    -dark-element-on-background-color: #444446;
+    -text-on-elevated-background-color: #6A727B;
+    -disabled-color: #BFC5CD;
+    -red-color: #ED5565;
+    -green-color: #89CC48;
+    -blue-color: #3E9BE6;
+    -gold-color: #F6BB42;
+
+    -fx-background-color: -background-color;
+}
+
+.label {
+    -fx-font-family: "Segoe ui";
+}
+
+.list-cell {
+    -fx-font-family: "Segoe ui";
+}
+
+
+
+
+
+.dashboard {
+    -fx-padding: 20;
+    -fx-vgap: 10;
+    -fx-hgap: 10;
+    -fx-orientation: vertical;
+}
+
+.loading-bar {
+    -fx-background-color: -background-elevated-color;
+    -fx-padding: 50;
+    -fx-spacing: 30;
+}
+
+.side-bar {
+    -fx-background-color: -header-color;
+    -fx-spacing: 20;
+}
+
+.side-bar .button {
+    -fx-background-color: transparent;
+}
+
+.side-bar .glyph-icon {
+    -fx-fill: -text-on-header-color;
+}
+
+.side-bar .list-view {
+    -fx-background-color: transparent;
+}
+
+
+
+
+.h1 {
+    -fx-font-size: 42;
+}
+
+.flat-button {
+    -fx-background-color: transparent;
+    -fx-pref-height: 30;
+    -fx-border-width: 2;
+    -fx-border-color: -dark-element-on-background-color;
+    -fx-border-radius: 50;
+    -fx-graphic-text-gap: 5;
+    -fx-text-fill: -dark-text-on-background-color;;
+    -fx-font-size: 14;
+}
+
+.flat-button .glyph-icon {
+    -glyph-size:22;
+    -fx-fill: -dark-text-on-background-color;
+}
+
+.panel {
+    -fx-padding: 20;
+}
+
+.panel .label {
+    -fx-text-fill: -dark-text-on-background-color;
+}
+
+.table-view {
+    -fx-background-color: -background-elevated-color;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -header-color;
+    -fx-pref-height: 60;
+}
+
+.table-view .column-header-background *.label {
+    -fx-text-fill: -text-on-header-color;
+    -fx-font-size: 16;
+    -fx-font-weight: normal;
+}
+
+.table-view .filler{
+    -fx-background-color: transparent;
+}
+.table-view .column-header{
+    -fx-background-color: transparent;
+}
+
+.table-view .increment-button,
+.table-view .decrement-button {
+    -fx-background-color:transparent;
+}
+
+.table-view .scroll-bar .decrement-arrow,
+.table-view .scroll-bar .increment-arrow {
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .track{
+	-fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: -header-deep-color;
+}
+
+.table-view .table-cell{
+    -fx-font-size:14;
+    -fx-text-fill: -dark-text-on-background-color;
+}
+
+.table-row-cell{
+    -fx-table-cell-border-color:-header-deep-color;
+}
+
+
+
+

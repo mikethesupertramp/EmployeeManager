@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" styleClass="employee-view" stylesheets="@employee.css"
+         type="HBox" xmlns="http://javafx.com/javafx/8.0.171">
+    <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+        <Label fx:id="lEmployeeName" ellipsisString=".." text="ლალი ბერიძე"/>
+    </HBox>
+    <Line endY="40.0" styleClass="separator-line"/>
+    <FontAwesomeIconView fx:id="icStatusIndicator" glyphName="CIRCLE" translateY="2.0"/>
+    <FontAwesomeIconView fx:id="icTimeIndicator" glyphName="CLOCK_ALT" translateY="2.0"/>
+</fx:root>
